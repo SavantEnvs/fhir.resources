@@ -1,0 +1,19 @@
+# .dockerignore for the commit-image build. Bake in the FULL repo (including .git history — the
+# grader uses it), dropping only local build artifacts and editor/OS cruft. Dev image, not minimal.
+
+# Build outputs / local cruft (build.sh regenerates these inside /mayhem at build time).
+build/
+dist/
+*.egg-info/
+*.o
+*.a
+*.so
+**/__pycache__/
+mayhem/wheelhouse/
+mayhem/fuzz_resource_creation
+mayhem/fhir_selftest
+
+# Editor / OS noise
+.DS_Store
+*.swp
+*~

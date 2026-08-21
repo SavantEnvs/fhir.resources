@@ -1,0 +1,14 @@
+project: savantenvs/fhir.resources
+target: parse-resource-creation
+
+# No testsuite: directive — deliberate. Upstream's project name is dotted (fhir.resources); Mayhem
+# normalizes project slugs internally but the server-tar accumulation URL 404s regardless of
+# whether project: here is written dashed or dotted (tried both), aborting run-creation entirely
+# ("do not have access to use a test suite"). A local-only file:// entry (no server-tar) is itself
+# a forbidden form (drops corpus accumulation, #124). The harness needs no seed to reach real code
+# (confirmed: edges>0 without one), so per the spec a target with no seeds carries no directive.
+# Permanent workaround pending Mayhem support for non-alphanumeric project names; see repos/fhir.resources.yaml notes.
+cmds:
+  - cmd: /mayhem/mayhem/fuzz_resource_creation
+    libfuzzer: true
+    timeout: 10
